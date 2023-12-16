@@ -4,6 +4,7 @@ import App from "./App";
 import MenuLayout from "./layouts/MenuLayout";
 
 import DownloadPage from './pages/DownloadPage';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter ([
     {
@@ -19,8 +20,8 @@ const router = createBrowserRouter ([
                         element: <DownloadPage />
                     },
                     {
-                        path: "profile",
-                        element:<div>Home</div> 
+                        path: 'login',
+                        element: <LoginPage />
                     }
                 ]
             }

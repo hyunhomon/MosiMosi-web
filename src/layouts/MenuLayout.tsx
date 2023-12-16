@@ -8,6 +8,7 @@ import { MdOutlineLogin } from "react-icons/md";
 import { RiHome2Line } from "react-icons/ri";
 import { AiOutlineMenu } from "react-icons/ai";
 
+const sidebarWidth = '240px';
 
 const WholeContainer = styled.div`
     width: 100%;
@@ -16,6 +17,8 @@ const WholeContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+
+    padding-left: ${ sidebarWidth };
 `;
 
 const LogoImg = styled.img`
@@ -24,7 +27,7 @@ const LogoImg = styled.img`
 `;
 
 const MenuLayoutContainer = styled.div`
-    width: 240px;
+    width: ${ sidebarWidth };
     height: 100%;
 
     padding: 30px 20px;
@@ -32,10 +35,13 @@ const MenuLayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    gap: 50px;
 
-    position: relative;
+    position: fixed;
+    left: 0;
 
     background-color: #E3F6E4;
+
 `;
 
 const MenuLayoutItemContainer = styled.div`
@@ -49,11 +55,21 @@ const MenuItemContainer = styled.div`
 `;
 
 const MenuItemList = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+`;
+
+const MenuItemListContainer= styled.div`   
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 function MenuLayout() {
@@ -61,28 +77,32 @@ function MenuLayout() {
         <WholeContainer>
             <MenuLayoutContainer>
                 <LogoImg src="icon.svg" />
-                <MenuItemList>
-                    <MenuItem
-                        icon={ <RiHome2Line /> }
-                        title={ "홈" }
-                        href={ "download" }
-                    />
-                    <MenuItem
-                        icon={ <VscDesktopDownload /> }
-                        title={ "다운로드" }
-                        href={ "download" }
-                    />
-                    <MenuItem
-                        icon={ <MdOutlineLogin /> }
-                        title={ "로그인" }
-                        href={ "download" }
-                    />
-                    <MenuItem
-                        icon={ <AiOutlineMenu /> }
-                        title={ "더보기" }
-                        href={ "download" }
-                    />
-                </MenuItemList>
+                <MenuItemListContainer>
+                    <MenuItemList>
+                        <MenuItem
+                            icon={ <RiHome2Line /> }
+                            title={ "홈" }
+                            href={ "" }
+                        />
+                        <MenuItem
+                            icon={ <VscDesktopDownload /> }
+                            title={ "다운로드" }
+                            href={ "download" }
+                        />
+                    </MenuItemList>
+                    <MenuItemList>
+                        <MenuItem
+                            icon={ <MdOutlineLogin /> }
+                            title={ "로그인" }
+                            href={ "login" }
+                        />
+                        <MenuItem
+                            icon={ <AiOutlineMenu /> }
+                            title={ "더보기" }
+                            href={ "add" }
+                        />
+                    </MenuItemList>
+                </MenuItemListContainer>
             </MenuLayoutContainer>
             <Outlet />
         </WholeContainer>

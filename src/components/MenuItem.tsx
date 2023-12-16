@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom'
 import styled from 'styled-components';
 import '../styles/fonts.css';
 
@@ -9,10 +9,16 @@ interface MenuItemProps {
     href: string;
 }
 
-const MenuItemContainer = styled.div`
+interface MenuItemContainerProps {
+    backgroundColor: string;
+}
+
+const MenuItemContainer = styled.div<MenuItemContainerProps>`
     width: 100%;
 
     padding: 12px 16px;
+
+    cursor: pointer;
 
     display: flex;
     justify-content: flex-start;
@@ -21,8 +27,16 @@ const MenuItemContainer = styled.div`
 
     border-radius: 12px;
 
+    transition: all .1s ease-in-out;
+
+    background-color: ${(props) => props.backgroundColor};
+
     &:hover {
         background-color: #c3ecc5;
+    }
+
+    &:active {
+        filter: brightness(0.9)
     }
 
     svg {
@@ -38,12 +52,13 @@ const MenuItemContainer = styled.div`
 
 const MenuItem = ({ icon, title, href }: MenuItemProps) => {
     const navigate = useNavigate();
-
+    const { pathname } = useLocation();
 
     return (
         <MenuItemContainer onClick={ () => {
             navigate(href);
-        } }>
+
+        } } backgroundColor={ pathname  === '/' + href ? '#b8e9b9' : '' }>
             { icon }
             <span>{ title }</span>
         </MenuItemContainer>
